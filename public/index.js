@@ -1,4 +1,4 @@
-var socket = io('/', { forceNew: true });
+var socket = io('/', { forceNew: true, reconnectionDelay: 5000 });
 
 console.log('socket', socket);
 
