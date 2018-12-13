@@ -16,7 +16,18 @@ setInterval(function () {
 }, 2000)
 
 io.on('connection', socket => {
+
+  console.log('\n\n\n\n\n********************')
+  console.log('++++ connection ++++')
+  console.log('********************\n\n\n\n\n')
+
   socket.on('hi', () => {
     console.log(' hi ')
   })
+})
+
+io.on('disconnect', () => {
+  console.log('\n\n\n\n\n********************')
+  console.log('---- disconnect ----')
+  console.log('********************\n\n\n\n\n')
 })

@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: test-deployment
+  namespace: default
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: test-app
+    spec:
+      containers:
+      - image: gcr.io/ls-dev-220517/ls-test-repo:df3aba73d9e2fdf5a21f59a2873fa3501e32c8f0
+        name: test-app
+        imagePullPolicy: Always
+        command: ['npm', 'start']
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 2
+          periodSeconds: 600
+        ports:
+        - containerPort: 8080
