@@ -24,10 +24,11 @@ io.on('connection', socket => {
   socket.on('hi', () => {
     console.log(' hi ')
   })
+
+  socket.on('disconnect', () => {
+    console.log('\n\n\n\n\n********************')
+    console.log('---- disconnect ----')
+    console.log('********************\n\n\n\n\n')
+  })
 })
 
-io.on('disconnect', () => {
-  console.log('\n\n\n\n\n********************')
-  console.log('---- disconnect ----')
-  console.log('********************\n\n\n\n\n')
-})
