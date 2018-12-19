@@ -1,32 +1,15 @@
-FROM node:9.1
-MAINTAINER Test-Lightfoundry
+FROM node:8-slim
 
-# Install Utilities
-RUN apt-get update -q  \
- && apt-get install -yqq \
- curl \
- git \
- ssh \
- gcc \
- make \
- build-essential \
- libkrb5-dev \
- sudo \
- apt-utils \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+LABEL maintainer="Jonathan Gros-Dubois"
+LABEL version="14.3.2"
+LABEL description="Docker file for SocketCluster with support for clustering."
 
-WORKDIR /opt
+RUN mkdir -p /usr/src/
+WORKDIR /usr/src/
+COPY . /usr/src/
 
-# Copies the local package.json file to the container
-# and utilities docker container cache to not needing to rebuild
-# and install node_modules/ everytime we build the docker, but only
-# when the local package.json file changes.
-# Install npm packages
-COPY package.json /opt/package.json
-RUN NODE_ENV=development npm install --quiet
+RUN npm install .
 
-# Set development environment as default
-ENV NODE_ENV production
+EXPOSE 8000
 
-COPY . /opt
+CMD ["npm", "run", "start:docker"]
