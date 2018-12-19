@@ -11,7 +11,7 @@ spec:
         app: test-app
     spec:
       containers:
-      - image: gcr.io/ls-dev-220517/ls-test-repo:latest
+      - image: gcr.io/ls-dev-220517/ls-test-repo
         name: test-app
         imagePullPolicy: Always
         command: ['npm', 'start']

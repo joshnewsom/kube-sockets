@@ -1,4 +1,4 @@
-var socket = io();
+var socket = io({transports: ['websocket']});
 
 console.log('socket', socket);
 
