@@ -3,7 +3,7 @@ const app = express()
 
 const server = app.listen(8080)
 
-const io = require('socket.io')(server, { transports: ['websocket', 'polling'] })
+const io = require('socket.io')(server)
 
 app.use(express.static('public'))
 

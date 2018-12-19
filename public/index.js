@@ -1,4 +1,4 @@
-var socket = io('', { forceNew: true });
+var socket = io();
 
 console.log('socket', socket);
 
